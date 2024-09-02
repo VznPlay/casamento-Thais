@@ -202,6 +202,10 @@ main {
     font-family: "Quicksand", system-ui;
     letter-spacing: 1px;
 }
+
+.cor{
+    font-size: 17px;
+}
 .img-padin img{
     width: 100px;
 }
