@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon">
+    <title>THAIS E EDUARDO</title>
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@400;700&display=swap');
+/*font-family: "Quicksand", system-ui;*/
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+/*font-family: "Montserrat", sans-serif;*/
+
+*{
+    margin: 0;
+    padding: 0;
+}
+body, h1, p {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+header {
+    background-color: #f0f0f0; 
+    padding: 5px;
+    text-align: center;
+}
+.titulo h1 {
+    font-size: 30px;
+    color: #277ec5;
+    margin-bottom: 50px;
+    font-family: 'Quicksand', system-ui; 
+    letter-spacing: 1px;
+}
+.titulo p {
+    font-family: 'Quicksand', system-ui; 
+    font-size: 18px;
+    color: #181717; 
+    line-height: 1.6;
+    margin: 0 auto;
+    padding: 0 20px;
+    letter-spacing: 1px;
+    margin-bottom: 100px;
+}
+
+.btn-copiar {
+            background-color: #03ffff; /* Verde */
+            border: 2px solid #000; /* Bordas pretas */
+            color: #000; /* Letra preta */
+            padding: 10px 20px;
+            font-size: 20px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+}
+.btn-copiar:hover {
+            background-color: #0fdb19; /* Verde mais escuro ao passar o mouse */
+}
+
+
+
+</style>
+
+
+</head>
+<body>
+
+    <header>
+        <div class="titulo">
+            <h1>Queridos amigos e familiares</h1>
+            <p>O maior presente que poderíamos receber é a sua presença em nosso dia especial. Sabemos que cada um de vocês estará compartilhando conosco momentos de amor e alegria, e isso já significa muito para nós.
+
+                Se desejarem nos presentear de alguma forma, ficaremos imensamente gratos, mas saibam que a sua companhia é o que realmente importa para nós.
+                
+                Caso estejam em dúvida sobre o que nos dar de presente, uma contribuição via Pix, no valor que considerar adequado, será recebida com o mesmo carinho. O importante é que estejam conosco, celebrando este momento único ao nosso lado."</p>
+        </div>
+
+        <button class="btn-copiar" onclick="copiarChavePix()">Copiar chave Pix</button>
+
+    </header>
+
+
+
+    <script>
+        function copiarChavePix() {
+            // Substitua 'SUA_CHAVE_PIX_AQUI' pela sua chave Pix real
+            const chavePix = '98970114679';
+            
+            // Cria um elemento textarea para facilitar a cópia
+            const textarea = document.createElement('textarea');
+            textarea.value = chavePix;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            // Cria e exibe uma mensagem de sucesso
+            showSuccessMessage();
+        }
+
+        function showSuccessMessage() {
+            // Cria o elemento de mensagem
+            const message = document.createElement('div');
+            message.textContent = 'Chave Pix copiada';
+            message.style.position = 'fixed';
+            message.style.top = '10px';
+            message.style.right = '10px';
+            message.style.backgroundColor = '#4CAF50'; /* Verde */
+            message.style.color = '#fff'; /* Letra branca */
+            message.style.padding = '10px';
+            message.style.borderRadius = '5px';
+            message.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            message.style.fontSize = '16px';
+            message.style.zIndex = '1000';
+            document.body.appendChild(message);
+
+            // Adiciona efeito de confete
+            addConfetti();
+
+            // Remove a mensagem após 3 segundos
+            setTimeout(() => {
+                document.body.removeChild(message);
+            }, 3000);
+        }
+
+        function addConfetti() {
+            // Cria o elemento de confete
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed';
+            confetti.style.top = '0';
+            confetti.style.left = '0';
+            confetti.style.width = '100%';
+            confetti.style.height = '100%';
+            confetti.style.pointerEvents = 'none';
+            confetti.style.zIndex = '1000';
+            document.body.appendChild(confetti);
+
+            // Adiciona o efeito de confete
+            const canvas = document.createElement('canvas');
+            confetti.appendChild(canvas);
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const ctx = canvas.getContext('2d');
+
+            const colors = ['#FF0', '#F0F', '#0FF'];
+            const confettiParticles = [];
+
+            function createParticle() {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const size = Math.random() * 5 + 5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const speedX = (Math.random() - 0.5) * 5;
+                const speedY = Math.random() * 5 + 2;
+
+                confettiParticles.push({ x, y, size, color, speedX, speedY });
+            }
+
+            for (let i = 0; i < 100; i++) {
+                createParticle();
+            }
+
+            function animateConfetti() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                confettiParticles.forEach(p => {
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    p.speedY += 0.1; // Simula a gravidade
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.fill();
+                });
+                requestAnimationFrame(animateConfetti);
+            }
+
+            animateConfetti();
+
+            // Remove o efeito após 3 segundos
+            setTimeout(() => {
+                document.body.removeChild(confetti);
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>
